@@ -9,11 +9,22 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
 
-      # ── macOS / Linux / Windows con WSL2 backend (por defecto) ────
+      # ── macOS con Docker Desktop / Linux genérico / Windows WSL2 ────
+      # Docker Desktop en macOS expone /var/run/docker.sock dentro de la VM.
+      # Esta ruta también funciona en Linux nativo y Windows con WSL2 backend.
       - /var/run/docker.sock:/var/run/docker.sock
 
+      # ── macOS Docker Desktop (socket por usuario — solo si el anterior falla) ──
+      # Si Docker Desktop está configurado con socket de usuario específico,
+      # comentar la línea anterior y descomentar esta (ajustar "David" al usuario):
+      # - /Users/David/.docker/run/docker.sock:/var/run/docker.sock
+
+      # ── Windows con WSL2 backend ──────────────────────────────────
+      # (descomentar y comentar la línea de macOS de arriba)
+      # - /var/run/docker.sock:/var/run/docker.sock
+
       # ── Windows con Hyper-V backend ────────────────────────────────
-      # Comentar la línea anterior y descomentar la siguiente:
+      # (descomentar y comentar la línea de macOS de arriba)
       # - \\.\pipe\docker_engine:\\.\pipe\docker_engine
 
 volumes:
