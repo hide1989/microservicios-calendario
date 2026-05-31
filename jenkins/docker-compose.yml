@@ -1,0 +1,20 @@
+services:
+  jenkins:
+    build: .
+    container_name: jenkins
+    user: root
+    ports:
+      - "8090:8080"    # UI Jenkins — http://localhost:8090
+      - "50000:50000"  # Puerto para agentes Jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+      # ── macOS / Linux / Windows con WSL2 backend (por defecto) ────
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # ── Windows con Hyper-V backend ────────────────────────────────
+      # Comentar la línea anterior y descomentar la siguiente:
+      # - \\.\pipe\docker_engine:\\.\pipe\docker_engine
+
+volumes:
+  jenkins_home:

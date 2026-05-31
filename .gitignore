@@ -1,0 +1,11 @@
+node_modules/
+target/
+.env
+.DS_Store
+*.pdf
+EXAMEN*.zip
+jenkins/jenkins_home/
+coverage/
+.idea/
+*.iml
+.vscode/
